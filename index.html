@@ -1,381 +1,377 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Interactive Nutrition Menu</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Interactive Nutrition Menu</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
+<style>
 
-    body{
-      font-family:'Poppins',sans-serif;
-      background:#0f0f0f;
-      color:white;
-      overflow-x:hidden;
-    }
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-    body::before{
-      content:'';
-      position:fixed;
-      inset:0;
-      background:
-        radial-gradient(circle at top left,#1d4d2b 0%,transparent 30%),
-        radial-gradient(circle at bottom right,#8b5a2b 0%,transparent 30%),
-        linear-gradient(135deg,#111,#1b1b1b);
-      z-index:-1;
-    }
+body{
+  font-family:'Poppins',sans-serif;
+  background:#0f0f0f;
+  color:white;
+  overflow-x:hidden;
+}
 
-    .hero{
-      text-align:center;
-      padding:60px 20px 40px;
-    }
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at top left,#1f5132 0%,transparent 30%),
+    radial-gradient(circle at bottom right,#7c4f2a 0%,transparent 30%),
+    linear-gradient(135deg,#111,#1b1b1b);
+  z-index:-1;
+}
 
-    .hero h1{
-      font-size:60px;
-      font-weight:700;
-      letter-spacing:2px;
-      background:linear-gradient(90deg,#ffd86f,#fc6262);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      margin-bottom:10px;
-    }
+.hero{
+  text-align:center;
+  padding:70px 20px 50px;
+}
 
-    .hero p{
-      color:#d0d0d0;
-      font-size:18px;
-    }
+.hero h1{
+  font-size:62px;
+  font-weight:700;
+  background:linear-gradient(90deg,#ffd86f,#fc6262);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  margin-bottom:10px;
+}
 
-    .container{
-      width:95%;
-      max-width:1600px;
-      margin:auto;
-      padding-bottom:50px;
-    }
+.hero p{
+  color:#d0d0d0;
+  font-size:18px;
+}
 
-    .menu-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-      gap:25px;
-    }
+.container{
+  width:95%;
+  max-width:1800px;
+  margin:auto;
+  padding-bottom:60px;
+}
 
-    .card{
-      background:rgba(255,255,255,0.06);
-      border:1px solid rgba(255,255,255,0.08);
-      backdrop-filter:blur(15px);
-      border-radius:28px;
-      overflow:hidden;
-      transition:0.4s ease;
-      position:relative;
-    }
+.menu-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(330px,1fr));
+  gap:28px;
+}
 
-    .card:hover{
-      transform:translateY(-10px) scale(1.02);
-      box-shadow:0 20px 40px rgba(0,0,0,0.4);
-    }
+.card{
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.08);
+  backdrop-filter:blur(15px);
+  border-radius:28px;
+  overflow:hidden;
+  transition:0.4s;
+}
 
-    .card img{
-      width:100%;
-      height:240px;
-      object-fit:cover;
-    }
+.card:hover{
+  transform:translateY(-10px) scale(1.02);
+  box-shadow:0 20px 45px rgba(0,0,0,0.5);
+}
 
-    .card-content{
-      padding:24px;
-    }
+.card img{
+  width:100%;
+  height:240px;
+  object-fit:cover;
+}
 
-    .menu-badge{
-      display:inline-block;
-      padding:8px 16px;
-      background:linear-gradient(135deg,#2ecc71,#27ae60);
-      border-radius:999px;
-      font-size:13px;
-      font-weight:600;
-      margin-bottom:14px;
-    }
+.card-content{
+  padding:24px;
+}
 
-    .menu-title{
-      font-size:28px;
-      font-weight:700;
-      margin-bottom:20px;
-    }
+.menu-badge{
+  display:inline-block;
+  padding:8px 16px;
+  border-radius:999px;
+  background:linear-gradient(135deg,#2ecc71,#27ae60);
+  font-size:13px;
+  font-weight:600;
+  margin-bottom:14px;
+}
 
-    .nutrition{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:14px;
-    }
+.menu-title{
+  font-size:30px;
+  font-weight:700;
+  margin-bottom:20px;
+}
 
-    .nutrition-item{
-      background:rgba(255,255,255,0.05);
-      border-radius:18px;
-      padding:14px;
-      transition:0.3s;
-    }
+.nutrition{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
 
-    .nutrition-item:hover{
-      background:rgba(255,255,255,0.1);
-    }
+.nutrition-item{
+  background:rgba(255,255,255,0.05);
+  padding:14px;
+  border-radius:18px;
+  transition:0.3s;
+}
 
-    .nutrition-item h4{
-      font-size:13px;
-      color:#bfbfbf;
-      margin-bottom:5px;
-      font-weight:500;
-    }
+.nutrition-item:hover{
+  background:rgba(255,255,255,0.1);
+}
 
-    .nutrition-item p{
-      font-size:20px;
-      font-weight:700;
-    }
+.nutrition-item h4{
+  font-size:13px;
+  color:#c9c9c9;
+  margin-bottom:6px;
+  font-weight:500;
+}
 
-    .footer{
-      margin-top:60px;
-      text-align:center;
-      color:#aaa;
-      padding-bottom:40px;
-    }
+.nutrition-item p{
+  font-size:20px;
+  font-weight:700;
+}
 
-    @media(max-width:768px){
-      .hero h1{
-        font-size:38px;
-      }
+.footer{
+  margin-top:60px;
+  text-align:center;
+  color:#9e9e9e;
+  padding-bottom:40px;
+}
 
-      .menu-title{
-        font-size:24px;
-      }
-    }
-  </style>
+@media(max-width:768px){
+
+  .hero h1{
+    font-size:40px;
+  }
+
+  .menu-title{
+    font-size:24px;
+  }
+
+}
+
+</style>
 </head>
+
 <body>
 
-  <section class="hero">
-    <h1>MENU NUTRITION DISPLAY</h1>
-    <p>Interactive Premium Nutrition Information</p>
-  </section>
+<section class="hero">
+  <h1>MENU NUTRITION DISPLAY</h1>
+  <p>Interactive Premium Nutrition Information</p>
+</section>
 
-  <div class="container">
+<div class="container">
 
-    <div class="menu-grid">
+<div class="menu-grid">
 
-      <!-- MENU 1 -->
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?q=80&w=1200&auto=format&fit=crop" alt="">
-        <div class="card-content">
-          <div class="menu-badge">MENU 1</div>
-          <div class="menu-title">Nasi Goreng Jawa</div>
+<!-- MENU 1 -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?q=80&w=1200&auto=format&fit=crop">
+<div class="card-content">
+<div class="menu-badge">MENU 1</div>
+<div class="menu-title">Nasi Goreng Jawa</div>
 
-          <div class="nutrition">
-            <div class="nutrition-item">
-              <h4>Energi</h4>
-              <p>522.7 kkal</p>
-            </div>
+<div class="nutrition">
+<div class="nutrition-item"><h4>Energi</h4><p>522.7 kkal</p></div>
+<div class="nutrition-item"><h4>Protein</h4><p>24.1 g</p></div>
+<div class="nutrition-item"><h4>Lemak</h4><p>20.3 g</p></div>
+<div class="nutrition-item"><h4>Karbohidrat</h4><p>56.6 g</p></div>
+<div class="nutrition-item"><h4>Serat</h4><p>1 g</p></div>
+<div class="nutrition-item"><h4>Natrium</h4><p>683.3 mg</p></div>
+</div>
+</div>
+</div>
 
-            <div class="nutrition-item">
-              <h4>Protein</h4>
-              <p>24.1 g</p>
-            </div>
+<!-- MENU 2 -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?q=80&w=1200&auto=format&fit=crop">
+<div class="card-content">
+<div class="menu-badge">MENU 2</div>
+<div class="menu-title">Nasi Goreng Spesial</div>
 
-            <div class="nutrition-item">
-              <h4>Lemak</h4>
-              <p>20.3 g</p>
-            </div>
+<div class="nutrition">
+<div class="nutrition-item"><h4>Energi</h4><p>520.13 kkal</p></div>
+<div class="nutrition-item"><h4>Protein</h4><p>15.7 g</p></div>
+<div class="nutrition-item"><h4>Lemak</h4><p>15.8 g</p></div>
+<div class="nutrition-item"><h4>Karbohidrat</h4><p>73.3 g</p></div>
+<div class="nutrition-item"><h4>Serat</h4><p>1.3 g</p></div>
+<div class="nutrition-item"><h4>Natrium</h4><p>712.9 mg</p></div>
+</div>
+</div>
+</div>
 
-            <div class="nutrition-item">
-              <h4>Karbohidrat</h4>
-              <p>56.6 g</p>
-            </div>
+<!-- MENU 3 -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1547592180-85f173990554?q=80&w=1200&auto=format&fit=crop">
+<div class="card-content">
+<div class="menu-badge">MENU 3</div>
+<div class="menu-title">Capjay</div>
 
-            <div class="nutrition-item">
-              <h4>Serat</h4>
-              <p>1 g</p>
-            </div>
+<div class="nutrition">
+<div class="nutrition-item"><h4>Energi</h4><p>258.23 kkal</p></div>
+<div class="nutrition-item"><h4>Protein</h4><p>11.4 g</p></div>
+<div class="nutrition-item"><h4>Lemak</h4><p>12.1 g</p></div>
+<div class="nutrition-item"><h4>Karbohidrat</h4><p>23.6 g</p></div>
+<div class="nutrition-item"><h4>Serat</h4><p>2.4 g</p></div>
+<div class="nutrition-item"><h4>Natrium</h4><p>1469.5 mg</p></div>
+</div>
+</div>
+</div>
 
-            <div class="nutrition-item">
-              <h4>Natrium</h4>
-              <p>683.3 mg</p>
-            </div>
-          </div>
-        </div>
-      </div>
+<!-- MENU 4 -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?q=80&w=1200&auto=format&fit=crop">
+<div class="card-content">
+<div class="menu-badge">MENU 4</div>
+<div class="menu-title">Omellete Wedgez</div>
 
-      <!-- MENU 2 -->
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?q=80&w=1200&auto=format&fit=crop" alt="">
-        <div class="card-content">
-          <div class="menu-badge">MENU 2</div>
-          <div class="menu-title">Nasi Goreng Spesial</div>
+<div class="nutrition">
+<div class="nutrition-item"><h4>Energi</h4><p>378.4 kkal</p></div>
+<div class="nutrition-item"><h4>Protein</h4><p>15.6 g</p></div>
+<div class="nutrition-item"><h4>Lemak</h4><p>32.7 g</p></div>
+<div class="nutrition-item"><h4>Karbohidrat</h4><p>5.8 g</p></div>
+<div class="nutrition-item"><h4>Serat</h4><p>0.4 g</p></div>
+<div class="nutrition-item"><h4>Natrium</h4><p>189 mg</p></div>
+</div>
+</div>
+</div>
 
-          <div class="nutrition">
-            <div class="nutrition-item">
-              <h4>Energi</h4>
-              <p>520.13 kkal</p>
-            </div>
+<!-- MENU 5 -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1617093727343-374698b1b08d?q=80&w=1200&auto=format&fit=crop">
+<div class="card-content">
+<div class="menu-badge">MENU 5</div>
+<div class="menu-title">Bihun Kuah</div>
 
-            <div class="nutrition-item">
-              <h4>Protein</h4>
-              <p>15.7 g</p>
-            </div>
+<div class="nutrition">
+<div class="nutrition-item"><h4>Energi</h4><p>522.6 kkal</p></div>
+<div class="nutrition-item"><h4>Protein</h4><p>11.8 g</p></div>
+<div class="nutrition-item"><h4>Lemak</h4><p>8.8 g</p></div>
+<div class="nutrition-item"><h4>Karbohidrat</h4><p>95.3 g</p></div>
+<div class="nutrition-item"><h4>Serat</h4><p>2 g</p></div>
+<div class="nutrition-item"><h4>Natrium</h4><p>1590.6 mg</p></div>
+</div>
+</div>
+</div>
 
-            <div class="nutrition-item">
-              <h4>Lemak</h4>
-              <p>15.8 g</p>
-            </div>
+<!-- MENU 6 -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?q=80&w=1200&auto=format&fit=crop">
+<div class="card-content">
+<div class="menu-badge">MENU 6</div>
+<div class="menu-title">Tami Capjay</div>
 
-            <div class="nutrition-item">
-              <h4>Karbohidrat</h4>
-              <p>73.3 g</p>
-            </div>
+<div class="nutrition">
+<div class="nutrition-item"><h4>Energi</h4><p>420.73 kkal</p></div>
+<div class="nutrition-item"><h4>Protein</h4><p>16.2 g</p></div>
+<div class="nutrition-item"><h4>Lemak</h4><p>15.3 g</p></div>
+<div class="nutrition-item"><h4>Karbohidrat</h4><p>51.9 g</p></div>
+<div class="nutrition-item"><h4>Serat</h4><p>4.1 g</p></div>
+<div class="nutrition-item"><h4>Natrium</h4><p>1470.5 mg</p></div>
+</div>
+</div>
+</div>
 
-            <div class="nutrition-item">
-              <h4>Serat</h4>
-              <p>1.3 g</p>
-            </div>
+<!-- MENU 7 -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?q=80&w=1200&auto=format&fit=crop">
+<div class="card-content">
+<div class="menu-badge">MENU 7</div>
+<div class="menu-title">Sop Iga</div>
 
-            <div class="nutrition-item">
-              <h4>Natrium</h4>
-              <p>712.9 mg</p>
-            </div>
-          </div>
-        </div>
-      </div>
+<div class="nutrition">
+<div class="nutrition-item"><h4>Energi</h4><p>887.5 kkal</p></div>
+<div class="nutrition-item"><h4>Protein</h4><p>53.625 g</p></div>
+<div class="nutrition-item"><h4>Lemak</h4><p>1.51 g</p></div>
+<div class="nutrition-item"><h4>Karbohidrat</h4><p>52.6 g</p></div>
+<div class="nutrition-item"><h4>Serat</h4><p>1.6 g</p></div>
+<div class="nutrition-item"><h4>Natrium</h4><p>2837.1 mg</p></div>
+</div>
+</div>
+</div>
 
-      <!-- MENU 3 -->
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1547592180-85f173990554?q=80&w=1200&auto=format&fit=crop" alt="">
-        <div class="card-content">
-          <div class="menu-badge">MENU 3</div>
-          <div class="menu-title">Capjay</div>
+<!-- MENU 8 -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1625944230945-1b7dd3b949ab?q=80&w=1200&auto=format&fit=crop">
+<div class="card-content">
+<div class="menu-badge">MENU 8</div>
+<div class="menu-title">Sop Buntut</div>
 
-          <div class="nutrition">
-            <div class="nutrition-item">
-              <h4>Energi</h4>
-              <p>258.23 kkal</p>
-            </div>
+<div class="nutrition">
+<div class="nutrition-item"><h4>Energi</h4><p>907.5 kkal</p></div>
+<div class="nutrition-item"><h4>Protein</h4><p>82.8 g</p></div>
+<div class="nutrition-item"><h4>Lemak</h4><p>36.1 g</p></div>
+<div class="nutrition-item"><h4>Karbohidrat</h4><p>52.6 g</p></div>
+<div class="nutrition-item"><h4>Serat</h4><p>1.6 g</p></div>
+<div class="nutrition-item"><h4>Natrium</h4><p>3297.1 mg</p></div>
+</div>
+</div>
+</div>
 
-            <div class="nutrition-item">
-              <h4>Protein</h4>
-              <p>11.4 g</p>
-            </div>
+<!-- MENU 9 -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1621303837174-89787a7d4729?q=80&w=1200&auto=format&fit=crop">
+<div class="card-content">
+<div class="menu-badge">MENU 9</div>
+<div class="menu-title">Pisang Goreng Keju</div>
 
-            <div class="nutrition-item">
-              <h4>Lemak</h4>
-              <p>12.1 g</p>
-            </div>
+<div class="nutrition">
+<div class="nutrition-item"><h4>Energi</h4><p>476.9 kkal</p></div>
+<div class="nutrition-item"><h4>Protein</h4><p>7.1 g</p></div>
+<div class="nutrition-item"><h4>Lemak</h4><p>11 g</p></div>
+<div class="nutrition-item"><h4>Karbohidrat</h4><p>93.1 g</p></div>
+<div class="nutrition-item"><h4>Serat</h4><p>5 g</p></div>
+<div class="nutrition-item"><h4>Natrium</h4><p>530.1 mg</p></div>
+</div>
+</div>
+</div>
 
-            <div class="nutrition-item">
-              <h4>Karbohidrat</h4>
-              <p>23.6 g</p>
-            </div>
+<!-- MENU 10 -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?q=80&w=1200&auto=format&fit=crop">
+<div class="card-content">
+<div class="menu-badge">MENU 10</div>
+<div class="menu-title">Es Jeruk</div>
 
-            <div class="nutrition-item">
-              <h4>Serat</h4>
-              <p>2.4 g</p>
-            </div>
+<div class="nutrition">
+<div class="nutrition-item"><h4>Energi</h4><p>152.2 kkal</p></div>
+<div class="nutrition-item"><h4>Protein</h4><p>1.8 g</p></div>
+<div class="nutrition-item"><h4>Lemak</h4><p>0.2 g</p></div>
+<div class="nutrition-item"><h4>Karbohidrat</h4><p>38.6 g</p></div>
+<div class="nutrition-item"><h4>Serat</h4><p>4.8 g</p></div>
+<div class="nutrition-item"><h4>Gula</h4><p>15 g</p></div>
+</div>
+</div>
+</div>
 
-            <div class="nutrition-item">
-              <h4>Natrium</h4>
-              <p>1469.5 mg</p>
-            </div>
-          </div>
-        </div>
-      </div>
+<!-- MENU 11 -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1556881286-fc6915169721?q=80&w=1200&auto=format&fit=crop">
+<div class="card-content">
+<div class="menu-badge">MENU 11</div>
+<div class="menu-title">Jus PHC</div>
 
-      <!-- MENU 4 -->
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?q=80&w=1200&auto=format&fit=crop" alt="">
-        <div class="card-content">
-          <div class="menu-badge">MENU 4</div>
-          <div class="menu-title">Omellete Wedgez</div>
+<div class="nutrition">
+<div class="nutrition-item"><h4>Energi</h4><p>67.2 kkal</p></div>
+<div class="nutrition-item"><h4>Protein</h4><p>0.7 g</p></div>
+<div class="nutrition-item"><h4>Lemak</h4><p>0.2 g</p></div>
+<div class="nutrition-item"><h4>Karbohidrat</h4><p>16.3 g</p></div>
+<div class="nutrition-item"><h4>Serat</h4><p>1.4 g</p></div>
+<div class="nutrition-item"><h4>Gula</h4><p>1.3 g</p></div>
+</div>
+</div>
+</div>
 
-          <div class="nutrition">
-            <div class="nutrition-item">
-              <h4>Energi</h4>
-              <p>378.4 kkal</p>
-            </div>
+</div>
 
-            <div class="nutrition-item">
-              <h4>Protein</h4>
-              <p>15.6 g</p>
-            </div>
+<div class="footer">
+Premium Interactive Nutrition Display • 11 Menu
+</div>
 
-            <div class="nutrition-item">
-              <h4>Lemak</h4>
-              <p>32.7 g</p>
-            </div>
-
-            <div class="nutrition-item">
-              <h4>Karbohidrat</h4>
-              <p>5.8 g</p>
-            </div>
-
-            <div class="nutrition-item">
-              <h4>Serat</h4>
-              <p>0.4 g</p>
-            </div>
-
-            <div class="nutrition-item">
-              <h4>Natrium</h4>
-              <p>189 mg</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- MENU 5 -->
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1617093727343-374698b1b08d?q=80&w=1200&auto=format&fit=crop" alt="">
-        <div class="card-content">
-          <div class="menu-badge">MENU 5</div>
-          <div class="menu-title">Bihun Kuah</div>
-
-          <div class="nutrition">
-            <div class="nutrition-item">
-              <h4>Energi</h4>
-              <p>522.6 kkal</p>
-            </div>
-
-            <div class="nutrition-item">
-              <h4>Protein</h4>
-              <p>11.8 g</p>
-            </div>
-
-            <div class="nutrition-item">
-              <h4>Lemak</h4>
-              <p>8.8 g</p>
-            </div>
-
-            <div class="nutrition-item">
-              <h4>Karbohidrat</h4>
-              <p>95.3 g</p>
-            </div>
-
-            <div class="nutrition-item">
-              <h4>Serat</h4>
-              <p>2 g</p>
-            </div>
-
-            <div class="nutrition-item">
-              <h4>Natrium</h4>
-              <p>1590.6 mg</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="footer">
-      Interactive Nutrition Banner • Premium Dark Theme
-    </div>
-
-  </div>
+</div>
 
 </body>
 </html>
