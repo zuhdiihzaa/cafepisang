@@ -399,6 +399,21 @@ Menu Cafe Pisang</title>
 
 <body>
 
+<div class="particles">
+
+  <span style="left:5%; animation-duration:18s;"></span>
+  <span style="left:15%; animation-duration:25s;"></span>
+  <span style="left:25%; animation-duration:20s;"></span>
+  <span style="left:35%; animation-duration:30s;"></span>
+  <span style="left:45%; animation-duration:17s;"></span>
+  <span style="left:55%; animation-duration:28s;"></span>
+  <span style="left:65%; animation-duration:22s;"></span>
+  <span style="left:75%; animation-duration:16s;"></span>
+  <span style="left:85%; animation-duration:24s;"></span>
+  <span style="left:95%; animation-duration:19s;"></span>
+
+</div>
+
   <!-- HERO -->
 
   <section class="hero">
@@ -688,10 +703,43 @@ Menu Cafe Pisang</h1>
         });
 
       });
+document.querySelectorAll('.card').forEach(card=>{
 
-  </script>
+  card.addEventListener('mousemove',(e)=>{
+
+    const rect = card.getBoundingClientRect();
+
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const rotateX = ((y - centerY) / 18);
+    const rotateY = ((centerX - x) / 18);
+
+    card.style.transform =
+      `
+      rotateX(${rotateX}deg)
+      rotateY(${rotateY}deg)
+      scale(1.03)
+      `;
+  });
+
+  card.addEventListener('mouseleave',()=>{
+
+    card.style.transform =
+      `
+      rotateX(0deg)
+      rotateY(0deg)
+      scale(1)
+      `;
+  });
+
+});
+
+</script>
 
 </body>
-
 </html>
 ```
